@@ -7,7 +7,7 @@
     Smoke weed every day.  Do not lick toads IRL.
 */
 
-pragma solidity >=0.7.0 <0.9.0;
+pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
@@ -25,13 +25,16 @@ contract PoisonToads is ERC721, Ownable {
   
   uint256 public cost = 3.33 ether;
   uint256 public maxSupply = 3333;
-  uint256 public maxMintAmountPerTx = 33;
+  uint256 public maxMintAmountPerTx = 20;
 
   bool public paused = true;
   bool public revealed = false;
 
+  //address public ptuAddress;
+
   constructor() ERC721("PoisonToads", "PSNTDS") {
     setHiddenMetadataUri("ipfs://__CID__/hidden.json");
+    //setPtuAddress(0x6AdF29bF31540f2082DdF85B7fE55C92C191e420);
   }
 
   modifier mintCompliance(uint256 _mintAmount) {
@@ -46,6 +49,8 @@ contract PoisonToads is ERC721, Ownable {
 
   function mint(uint256 _mintAmount) public payable mintCompliance(_mintAmount) {
     require(!paused, "The contract is paused!");
+    //if the sender has a tpu token, cut the mint price in half
+    //we need the 1155 interface so we can call a method on the TPU contract here
     require(msg.value >= cost * _mintAmount, "Insufficient funds!");
 
     _mintLoop(msg.sender, _mintAmount);
@@ -100,6 +105,10 @@ contract PoisonToads is ERC721, Ownable {
     return bytes(currentBaseURI).length > 0
         ? string(abi.encodePacked(currentBaseURI, _tokenId.toString(), uriSuffix))
         : "";
+  }
+
+  function setPtuAddress(address _newAddress) public onlyOwner {
+    ptuAddress = _newAddress;
   }
 
   function setRevealed(bool _state) public onlyOwner {
