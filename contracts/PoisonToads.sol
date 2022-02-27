@@ -10,6 +10,7 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC1155/ERC1155.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -240,9 +241,9 @@ contract PoisonToads is ERC721, Ownable, ContextMixin, NativeMetaTransaction {
   string public uriSuffix = ".json";
   string public hiddenMetadataUri;
   
-  uint256 public cost = 3.33 ether;
-  uint256 public maxSupply = 3333;
-  uint256 public maxMintAmountPerTx = 20;
+  uint256 public cost = 1.00 ether;
+  uint256 public maxSupply = 100;
+  uint256 public maxMintAmountPerTx = 5;
 
   bool public paused = true;
   bool public revealed = false;
@@ -250,7 +251,7 @@ contract PoisonToads is ERC721, Ownable, ContextMixin, NativeMetaTransaction {
   address public ptuAddress;
 
   constructor() ERC721("PoisonToads", "PSNTDS") {
-    setHiddenMetadataUri("ipfs://__CID__/hidden.json");
+    setHiddenMetadataUri("ipfs://QmRp9XNPkwDqA5iCggF3E81cvWpwofeEUyupkBecs51P62/hidden.json");
     setPtuAddress(0x6AdF29bF31540f2082DdF85B7fE55C92C191e420);
 
     //calls into opensea stuff
@@ -269,8 +270,10 @@ contract PoisonToads is ERC721, Ownable, ContextMixin, NativeMetaTransaction {
 
   function mint(uint256 _mintAmount) public payable mintCompliance(_mintAmount) {
     require(!paused, "The contract is paused!");
-    //if the sender has a tpu token, cut the mint price in half
-    //we need the 1155 interface so we can call a method on the TPU contract here
+
+    //TO DO call an internal method to compute discounted mint cost based on which utility toads this address has, if any
+
+    
     require(msg.value >= cost * _mintAmount, "Insufficient funds!");
 
     _mintLoop(msg.sender, _mintAmount);
@@ -325,6 +328,25 @@ contract PoisonToads is ERC721, Ownable, ContextMixin, NativeMetaTransaction {
     return bytes(currentBaseURI).length > 0
         ? string(abi.encodePacked(currentBaseURI, _tokenId.toString(), uriSuffix))
         : "";
+  }
+
+  //internal method to computed discounted cost
+  function _getDiscountCost(address _owner) internal view returns (uint256){
+    //if the sender has a tpu token, cut the mint price in half
+    //we need the 1155 interface so we can call a method on the TPU contract here
+    IERC1155 ptuContract = IERC1155(ptuAddress);
+    uint256 costMultiplier = 1;
+    uint256 commonAmount = ptuContract.balanceOf(_owner, 1);
+    if(commonAmount >= 1){
+      costMultiplier = 3;
+    }
+    return cost / costMultiplier;
+  }
+
+  //external-facing method to get discounted mint cost
+  function discountCost(address _owner) public view returns (uint256) {
+    //call an internal method to compute discounted mint cost based on which utility toads this address has, if any
+    return _getDiscountCost(_owner);
   }
 
   function setPtuAddress(address _newAddress) public onlyOwner {
