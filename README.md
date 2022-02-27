@@ -4,11 +4,11 @@
 The Project website is [here](https://www.capnganj.art/).
 
 ## Mumbai To Do
-- [ ] 1155 testing metadata - 3 utility toads 
-- [ ] 1155 on Mumbai - Mint 3 utility toads with different rarities
+- [x] 1155 testing metadata - 3 utility toads in Pinata
+- [x] [1155 on Mumbai](https://mumbai.polygonscan.com/address/0x6adf29bf31540f2082ddf85b7fe55c92c191e420) - Mint 3 utility toads with different rarities, import to [Opensea](https://testnets.opensea.io/collection/poisontoadsutility)
 - [ ] 721 Testing metadata for Mumbai testing in Pinata (hidden and revealed)
-- [ ] 721 on Mumbai.  Let utility toads drive minting discounts
-- [ ] Minting dapp wired to Mumbai 721 contract.  Test minting with discounts, import on Opensea, pause/unpause, reveal
+- [ ] 721 on Mumbai.  Let utility toads drive minting discounts. Test minting with discounts, import on Opensea, pause/unpause, reveal
+- [ ] Modified Minting dapp wired to Mumbai 721 contract, hosted on Github pages
 
 ## Mainnet To Do
 - [ ] Production 1155 metadata in Pinata
