@@ -337,8 +337,16 @@ contract PoisonToads is ERC721, Ownable, ContextMixin, NativeMetaTransaction {
     IERC1155 ptuContract = IERC1155(ptuAddress);
     uint256 costMultiplier = 1;
     uint256 commonAmount = ptuContract.balanceOf(_owner, 1);
+    uint256 epicAmount = ptuContract.balanceOf(_owner, 2);
+    uint256 legendAmount = ptuContract.balanceOf(_owner, 3);
     if(commonAmount >= 1){
       costMultiplier = 3;
+    }
+    if(epicAmount >= 1){
+        costMultiplier = 6;
+    }
+    if(legendAmount >= 1){
+        costMultiplier = 9;
     }
     return cost / costMultiplier;
   }
