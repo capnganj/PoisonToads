@@ -252,6 +252,8 @@ contract PoisonToads is ERC721, Ownable, ContextMixin, NativeMetaTransaction {
 
   constructor() ERC721("PoisonToads", "PSNTDS") {
     setHiddenMetadataUri("ipfs://QmRp9XNPkwDqA5iCggF3E81cvWpwofeEUyupkBecs51P62/hidden.json");
+
+    //point to PoisonToadsUtility contract
     setPtuAddress(0x6AdF29bF31540f2082DdF85B7fE55C92C191e420);
 
     //calls into opensea stuff
@@ -271,10 +273,9 @@ contract PoisonToads is ERC721, Ownable, ContextMixin, NativeMetaTransaction {
   function mint(uint256 _mintAmount) public payable mintCompliance(_mintAmount) {
     require(!paused, "The contract is paused!");
 
-    //TO DO call an internal method to compute discounted mint cost based on which utility toads this address has, if any
-
-    
-    require(msg.value >= cost * _mintAmount, "Insufficient funds!");
+    //if the sender has a tpu token, cut the mint price
+    uint256 mintCost = _getDiscountCost(msg.sender);
+    require(msg.value >= mintCost * _mintAmount, "Insufficient funds!");
 
     _mintLoop(msg.sender, _mintAmount);
   }
