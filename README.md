@@ -1,5 +1,5 @@
 # PoisonToads
-3,333 Poison Toads on Polygon.  ERC-1155 utility token contract.  ERC-721 pfp contract.  Minting dapp.  If you lick your screen, you'll trip your effing face off!
+3,333 Poison Toads on Polygon.  ERC-1155 utility token contract.  ERC-721 pfp contract.  If you lick your screen, you'll trip your face off!
 
 The Project website is [here](https://www.capnganj.art/nft-collections/poison-toads).
 
