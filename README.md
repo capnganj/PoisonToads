@@ -12,8 +12,8 @@ The Project website is [here](https://www.capnganj.art/nft-collections/poison-to
 - [ ] Reveal! Metadata attributes iteration and debugging on Opensea after reveal
 
 ## Mainnet To Do
-- [ ] Production 1155 metadata in Pinata
-- [ ] 1155 on Mainnet.  Mint 3 utility toads
+- [x] Production 1155 metadata in Pinata
+- [x] 1155 on Mainnet.  Mint 3 utility toads
 - [ ] Production 721 hidden metadata in Pinata
 - [ ] 721 on Mainnet.  Pause contract!
 - [ ] Minting dapp wired to 721
