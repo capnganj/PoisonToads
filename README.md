@@ -9,12 +9,12 @@ The Project website is [here](https://www.capnganj.art/nft-collections/poison-to
 - [x] 721 Testing metadata for Mumbai testing in Pinata (hidden and revealed)
 - [x] [721 on Mumbai](https://mumbai.polygonscan.com/address/0xe6bda205de2f968271166C4b2650DefB38895De1)  Let utility toads drive minting discounts. Test minting with discounts, import on Opensea, pause/unpause
 - [x] [Modified Hashlips Minting Dapp](https://capnganj.github.io/PoisonToadsDapp/) wired to Mumbai 721 contract, hosted on Github pages
-- [ ] Reveal! Metadata attributes iteration and debugging on Opensea after reveal
+- [x] Reveal! Metadata attributes iteration and debugging on Opensea after reveal
 
 ## Mainnet To Do
 - [x] Production 1155 metadata in Pinata
 - [x] 1155 on Mainnet.  Mint 3 utility toads
-- [ ] Production 721 hidden metadata in Pinata
+- [x] Production 721 hidden metadata in Pinata
 - [ ] 721 on Mainnet.  Pause contract!
 - [ ] Minting dapp wired to 721
 - [ ] Opensea imports
