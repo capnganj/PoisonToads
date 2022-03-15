@@ -16,7 +16,7 @@ The Project website is [here](https://www.capnganj.art/nft-collections/poison-to
 - [x] 1155 on Mainnet.  Mint 3 utility toads
 - [x] Production 721 hidden metadata in Pinata
 - [x] [721 on Mainnet.](https://polygonscan.com/token/0x12a3ecd55de986fcb754cb2c9ddbc1de74df6c6b) 
-- [ ] Minting dapp wired to 721
+- [x] Minting dapp wired to 721
 - [x] [Opensea collection import](https://opensea.io/collection/poison-toads)
 - [x] Utility token listings and giveaways
 - [ ] Unpause contract
