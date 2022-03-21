@@ -19,5 +19,5 @@ The Project website is [here](https://www.capnganj.art/nft-collections/poison-to
 - [x] Minting dapp wired to 721
 - [x] [Opensea collection import](https://opensea.io/collection/poison-toads)
 - [x] Utility token listings and giveaways
-- [ ] Unpause contract
-- [ ] Reveal metadata
+- [x] Unpause contract (3/21/2022)
+- [ ] Reveal metadata (3/31/2022)
